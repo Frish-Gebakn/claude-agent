@@ -44,6 +44,47 @@
 
 ---
 
+## Gmail / Drive / Google Voice — וויאזוי מען שאפט די `credentials.json`
+
+די דאזיגע פיטשערס דארפן א `credentials.json` פייל, וואס מען שאפט **איין מאל (בחינם)** אין [Google Cloud Console](https://console.cloud.google.com). אט זענען די פונקטליכע שריט:
+
+**שריט A — עפן א Google Cloud פראיעקט**
+1. גיי צו [console.cloud.google.com](https://console.cloud.google.com) און לאג זיך אריין מיט די Google קאנטע וואס דו ווילסט די AI זאל נוצן.
+2. אויבן ביי די פראיעקט-מעניו (לעבן "Google Cloud") → קליק דעם דראפדאון → **New Project**.
+3. גיב א נאמען (למשל "Claude Agent") → **Create** → און קלייב יענעם פראיעקט.
+
+**שריט B — אנשטעל די APIs**
+1. לינקע מעניו (☰) → **APIs & Services** → **Library**.
+2. זוך **Gmail API** → קליק עס → **Enable**.
+3. (בלויז פאר Drive) זוך **Google Drive API** → **Enable**.
+
+**שריט C — OAuth consent screen**
+1. **APIs & Services** → **OAuth consent screen**.
+2. User Type: **External** → **Create**.
+3. פיל אויס App name + דיין אימעל (support + developer contact) → **Save and Continue**.
+4. Scopes: פשוט **Save and Continue**.
+5. **Test users** → **Add users** → לייג צו דיין אייגענעם Google אימעל → **Save and Continue**.
+
+**שריט D — שאף די credentials.json**
+1. **APIs & Services** → **Credentials**.
+2. **Create Credentials** → **OAuth client ID**.
+3. Application type: **Desktop app** → גיב א נאמען → **Create**.
+4. אין דעם פאפ-אפ → **Download JSON**. די פייל וואס לאדט אראפ = **דיין `credentials.json`**.
+
+**שריט E — לייג עס אריין אין די פראגראם (און לאג זיך איין)**
+1. **Setup** טאב → **Browse…** → קלייב די JSON פייל.
+2. קליק **Connect Google Account** → א בראוזער עפנט זיך:
+   - קלייב דיין קאנטע.
+   - ביי "Google hasn't verified this app": **Advanced** → **Go to Claude Agent (unsafe)** → **Continue**.
+   - ערלויב די Gmail (און Drive) דערלויבענישן.
+3. פארטיג — דער סטאטוס זאגט "Connected as your@email".
+
+> **⚠️ טו שריט E (Connect Google Account + לאג זיך איין) איידער דו שיקסט דיין ערשטן טעסט-טעקסט.**
+
+**טראבלשוטינג:** "access_denied" → לייג צו דיין אימעל ביי Test users (שריט C-5) • "Gmail API disabled" → ענדיג שריט B • פאלשע קאנטע → מעק אויס `token.json` און פארבינד נאכאמאל.
+
+---
+
 ## Google Voice SMS (טעקסטן צו די AI)
 
 כדי צו קענען טעקסטן צו די AI פון דיין טעלעפאן, מוזטו **אנשטעלן אימעל-נאטיפיקאציע ביי Google Voice**:
