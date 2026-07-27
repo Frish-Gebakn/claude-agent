@@ -147,18 +147,69 @@ Chrome (בראוזער-קאנטראל):
   אין די וועבזייטלעך וואס דו ווילסט די AI זאל נוצן, און לאז יענע Chrome
   פענצטער אפן.
 
-Gmail / Google Drive:
-  אין  "Setup"  קלייב דיין  credentials.json  און קליק  "Connect
-  Google Account".  זע דעם  "Google setup (help)"  טאב אין די פראגראם
-  פאר פונקטליכע שריט וויאזוי מען שאפט די Google פייל (credentials.json).
+Gmail / Google Drive / Google Voice:
+  די דאזיגע פיטשערס דארפן א credentials.json פייל, וואס מען שאפט איין
+  מאל (בחינם) אין "Google Cloud Console". אט זענען די פונקטליכע שריט:
 
-   >>> וויכטיג - דער ערשטער מאל <<<
-   נאכן אריינלייגן די  credentials.json  פייל, און נאכן קליקן "Connect
-   Google Account" (אדער בשעת'ן ערשטן מאל פרובירן עס אין די פראגראם),
-   וועט זיך עפענען א  בראוזער-פענצטער  וואס בעט דיך  אריינצולאגן אין
-   דיין אימעל  און  ערלויבן צוטריט.  טו דאס  איין מאל  - דאן קען די
-   פראגראם מאניטארן דיין אימעל.  * טו דאס איידער דו שיקסט דיין ערשטן
-   טעסט-טעקסט. *
+
+  ┌────────────────────────────────────────────────────────────┐
+  │  וויאזוי מען שאפט די  credentials.json  ("די דשעיסאן פייל")  │
+  └────────────────────────────────────────────────────────────┘
+
+  שריט A:  עפן א Google Cloud פראיעקט
+    1. גיי צו   console.cloud.google.com   און לאג זיך אריין מיט די
+       זעלבע Google קאנטע וואס דו ווילסט די AI זאל נוצן.
+    2. אויבן, ביי די פראיעקט-מעניו (לעבן "Google Cloud"), קליק אויף
+       דעם דראפדאון  →  "New Project".
+    3. גיב א נאמען (למשל "Claude Agent")  →  "Create".  ווארט א פאר
+       סעקונדעס, און דעמאלט קלייב יענעם פראיעקט אין דעם דראפדאון.
+
+  שריט B:  אנשטעל די נויטיגע APIs
+    1. אין די לינקע מעניו (☰)  →  "APIs & Services"  →  "Library".
+    2. זוך  "Gmail API"   →  קליק עס  →  "Enable".
+    3. (בלויז אויב דו ווילסט Drive) זוך  "Google Drive API"  →  "Enable".
+
+  שריט C:  אויפסעטן דעם "OAuth consent screen"
+    1. לינקע מעניו  →  "APIs & Services"  →  "OAuth consent screen".
+    2. ביי "User Type" קלייב  "External"   →  "Create".
+    3. פיל אויס:  App name (למשל "Claude Agent"),  און דיין אימעל ביי
+       "User support email"  און ביי  "Developer contact".
+        →  "Save and Continue".
+    4. ביי "Scopes" - פשוט  "Save and Continue"  (מען דארף דא גארנישט).
+    5. ביי "Test users"  →  "Add users"  →  לייג צו  דיין אייגענעם
+       Google אימעל   →  "Save and Continue".
+        (בשעת די עפפ איז אין "Testing" קען נאר דיין אימעל אריינלאגן -
+         דאס איז פיין פאר פערזענליכן באנוץ.)
+
+  שריט D:  שאף די credentials.json פייל
+    1. לינקע מעניו  →  "APIs & Services"  →  "Credentials".
+    2. אויבן  →  "Create Credentials"  →  "OAuth client ID".
+    3. ביי "Application type" קלייב  "Desktop app"  →  גיב א נאמען
+        →  "Create".
+    4. עס ווייזט א פאפ-אפ  →  קליק  "Download JSON".
+    5. די פייל וואס לאדט זיך אראפ - *** דאס איז דיין credentials.json ***
+
+  שריט E:  לייג עס אריין אין די פראגראם  (און לאג זיך איין)
+    1. אין  "Setup"  →  "Browse..."  →  קלייב די JSON פייל וואס דו
+       האסט נאר וואס אראפגעלאדן.
+    2. קליק  "Connect Google Account".  א בראוזער עפנט זיך:
+        - קלייב דיין Google קאנטע.
+        - אויב עס זאגט "Google hasn't verified this app":  קליק
+          "Advanced"  →  "Go to Claude Agent (unsafe)"  →  "Continue".
+          (דאס איז נארמאל פאר דיין אייגענע עפפ.)
+        - ערלויב די Gmail (און Drive) דערלויבענישן.
+    3. פארטיג! עס שפייכערט א token.json, און דער סטאטוס זאגט
+       "Connected as your@email".
+
+    >>> וויכטיג: טו שריט E - דהיינו קליק "Connect Google Account" און
+        לאג זיך איין - *** איידער *** דו שיקסט דיין ערשטן טעסט-טעקסט. <<<
+
+  טראבלשוטינג:
+    * "access_denied" ביים אריינלאגן  →  לייג צו דיין אימעל ביי
+      "Test users" (שריט C-5).
+    * "Gmail API has not been used / disabled"  →  ענדיג שריט B.
+    * פאלשע קאנטע  →  מעק אויס  token.json  לעבן דער פראגראם און
+      פארבינד נאכאמאל.
 
 Google Voice SMS (טעקסטן צו די AI פון דיין טעלעפאן):
   כדי דו זאלסט קענען טעקסטן צו די AI, מוזטו ערשט אנשטעלן אז Google
