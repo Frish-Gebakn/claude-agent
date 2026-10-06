@@ -1,114 +1,94 @@
-# Claude Agent
+<p align="center">
+  <img src="docs/icon.png" width="96" alt="MyDeskAI">
+</p>
 
-**דיין פערזענליכער AI אסיסטענט אויפן קאמפיוטער** — א ווינדאוס פראגראם וואס לאזט דיך שמועסן מיט **Claude Opus 5** (אנטראפיק'ס נייסטע און שטערקסטע AI) אויף היימישן אידיש, און די AI קען טאקע *טון* זאכן אויפן קאמפיוטער.
+<h1 align="center">MyDeskAI</h1>
 
-## 📥 דאונלאוד
+<p align="center">
+  א ווינדאוס פראגראם פאר ארבעטן מיט Claude, דער AI פון Anthropic, גלייך אויף דיין קאמפיוטער.
+</p>
 
-**[דאונלאוד די לעצטע ווערסיע »](https://github.com/Frish-Gebakn/claude-agent/releases/latest)** — דאונלאוד `Claude Agent.exe` און לויף עס. איין איינציגע פייל, קיין אינסטאלאציע נישט נייטיג.
+<p align="center">
+  <a href="https://github.com/Frish-Gebakn/claude-agent/releases/latest"><b>אראפלאדן</b></a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/Frish-Gebakn/claude-agent/releases/latest/download/MyDeskAI-Guide-Yiddish.pdf"><b>אנווייזונגען (PDF)</b></a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/Frish-Gebakn/claude-agent/releases"><b>ווערסיעס</b></a>
+</p>
 
----
+<p align="center">
+  <img src="docs/screenshot.png" width="820" alt="MyDeskAI">
+</p>
 
-## וואס עס קען
+## וועגן דער פראגראם
 
-- 💬 שמועסט אויף אידיש
-- 🖥 ראנט cmd / PowerShell קאמאנדס
-- 📁 ליינט, שרייבט און טוישט פיילן
-- 🌐 קאנטראלירט דיין Chrome בראוזער
-- 📧 קאנעקטארס: Gmail, Google Drive, GitHub
-- 📱 ענטפערט אויף טעקסטן צו דיין Google Voice נומער
-- 🔒 דו קלייבסט וויפיל צוטריט (גאנצע קאמפיוטער אדער נאר איין פאלדער)
-- 🔄 אויטא-אפדעיטס
+MyDeskAI לאזט דיך רעדן מיט Claude אויף אידיש אדער ענגליש, און די AI קען אויספירן ארבעט אויפן קאמפיוטער:
 
----
+- פיילן און פאלדערס: געפינען, ליינען, שרייבן, ארגאניזירן
+- קאמאנדס אין cmd און PowerShell
+- ארבעט אין Chrome
+- Gmail, Google Drive און GitHub
+- ענטפערן פער טעקסט מעסעדזש, דורך א Google Voice נומער
 
-## וויאזוי מען שטעלט עס אויף (בקיצור)
+יעדער שריט וואס די AI טוט ווערט געוויזן אין פענסטער בשעת זי ארבעט. מען באשטימט אליין וויפיל זי מעג אנרירן, און וועלכע קאמאנדס דארפן א באשטעטיגונג.
 
-1. **דאונלאוד** `Claude Agent.exe` און עפן עס.
-2. **שאף אן Anthropic API קי** — גיי צו [console.anthropic.com](https://console.anthropic.com) → עפן א קאנטע → לייג אריין credits (די API קאסט לויט'ן באנוץ) → API Keys → Create Key → קאפיר די קי.
-3. אין די פראגראם: **Setup** טאב → פעיסט די קי → **Save settings**.
-4. **Computer access** טאב → קלייב וויפיל צוטריט.
-5. **Run & Chat** טאב → **Start** → שרייב און שיק!
+## באדערפענישן
 
-> די פולע שריט-ביי-שריט אנווייזונגען: זע **[Setup-Instructions.txt](Setup-Instructions.txt)** (אויף אידיש).
+- ווינדאוס 10 אדער 11
+- אינטערנעט
+- איינס פון די צוויי:
+  - אן **Anthropic API קי** (מען צאלט לויטן באנוץ), אדער
+  - א **Claude סובסקריפשאן** (Pro אדער Max) מיט דער פרייער פראגראם Claude Code
 
----
+## אינסטאלירן
 
-## ספעציעלע קאמאנדס (אין טשעט אדער דורך SMS)
+1. לאד אראפ `MyDeskAI.exe` פון דער [לעצטער ווערסיע](https://github.com/Frish-Gebakn/claude-agent/releases/latest).
+2. לייג די פייל אין א שטענדיגן פאלדער. די סעטינגס ווערן געהאלטן אין דעם זעלבן פאלדער. קיין אינסטאלאציע איז נישט נויטיג.
+3. עפן די פראגראם. אויב ווינדאוס ווייזט "Windows protected your PC", קליק **More info** און דערנאך **Run anyway**.
 
-| קאמאנד | וואס עס טוט |
-|--------|-------------|
-| `נייע שמועס` / `reset` | הייבט אן א פרישע שמועס |
-| `model opus 5` / `fable` / `sonnet` / `haiku` | טוישט מאדעל אויפן פלי |
-| `וועלכע מאדעל` / `which model` | זאגט וועלכן מאדעל |
-| `help` / `הילף` | ווייזט די ליסטע |
+אויף ווינדאוס 10 קען די פראגראם בעטן צו אינסטאלירן Microsoft Edge WebView2. דאס איז א פרייע קאמפאנענט פון Microsoft; ווינדאוס 11 האט עס שוין.
 
----
+## אויפשטעלן
 
-## Gmail / Drive / Google Voice — וויאזוי מען שאפט די `credentials.json`
+| | Claude API | Claude סובסקריפשאן |
+|---|---|---|
+| באצאלונג | לויטן באנוץ, פון פאראויס-באצאלטע קרעדיטס | א חודש'ליכע פלאן ביי claude.ai |
+| וואס מען דארף | אן API קי פון console.anthropic.com | Claude Code, אינסטאלירט און איינגעלאגט |
+| Gmail / Drive / GitHub טולס | יא | ניין |
+| טעקסט מעסעדזשעס | יא | יא |
 
-די דאזיגע פיטשערס דארפן א `credentials.json` פייל, וואס מען שאפט **איין מאל (בחינם)** אין [Google Cloud Console](https://console.cloud.google.com). אט זענען די פונקטליכע שריט:
+די פולע אנווייזונגען, שריט נאך שריט מיט בילדער, זענען אין **[MyDeskAI-Guide-Yiddish.pdf](https://github.com/Frish-Gebakn/claude-agent/releases/latest/download/MyDeskAI-Guide-Yiddish.pdf)**.
 
-**שריט A — עפן א Google Cloud פראיעקט**
-1. גיי צו [console.cloud.google.com](https://console.cloud.google.com) און לאג זיך אריין מיט די Google קאנטע וואס דו ווילסט די AI זאל נוצן.
-2. אויבן ביי די פראיעקט-מעניו (לעבן "Google Cloud") → קליק דעם דראפדאון → **New Project**.
-3. גיב א נאמען (למשל "Claude Agent") → **Create** → און קלייב יענעם פראיעקט.
+## קאמאנדס
 
-**שריט B — אנשטעל די APIs**
-1. לינקע מעניו (☰) → **APIs & Services** → **Library**.
-2. זוך **Gmail API** → קליק עס → **Enable**.
-3. (בלויז פאר Drive) זוך **Google Drive API** → **Enable**.
+די ווערטער ארבעטן סיי אינעם שמועס, סיי דורך טעקסט מעסעדזש.
 
-**שריט C — OAuth consent screen**
-1. **APIs & Services** → **OAuth consent screen**.
-2. User Type: **External** → **Create**.
-3. פיל אויס App name + דיין אימעל (support + developer contact) → **Save and Continue**.
-4. Scopes: פשוט **Save and Continue**.
-5. **Test users** → **Add users** → לייג צו דיין אייגענעם Google אימעל → **Save and Continue**.
+| קאמאנד | פונקציע |
+|---|---|
+| `נייע שמועס` | הייבט אן א נייע שמועס |
+| `וועלכע מאדעל` | ווייזט דעם איצטיגן מאדעל |
+| `model opus 5`, `model fable`, `model sonnet`, `model haiku` | טוישט דעם מאדעל |
+| `terminal` | גייט ווייטער מיט א Claude Code שמועס (סובסקריפשאן) |
+| `help` | די פולע ליסטע |
 
-**שריט D — שאף די credentials.json**
-1. **APIs & Services** → **Credentials**.
-2. **Create Credentials** → **OAuth client ID**.
-3. Application type: **Desktop app** → גיב א נאמען → **Create**.
-4. אין דעם פאפ-אפ → **Download JSON**. די פייל וואס לאדט אראפ = **דיין `credentials.json`**.
+## אפדעיטס
 
-**שריט E — לייג עס אריין אין די פראגראם (און לאג זיך איין)**
-1. **Setup** טאב → **Browse…** → קלייב די JSON פייל.
-2. קליק **Connect Google Account** → א בראוזער עפנט זיך:
-   - קלייב דיין קאנטע.
-   - ביי "Google hasn't verified this app": **Advanced** → **Go to Claude Agent (unsafe)** → **Continue**.
-   - ערלויב די Gmail (און Drive) דערלויבענישן.
-3. פארטיג — דער סטאטוס זאגט "Connected as your@email".
+די פראגראם טשעקט ביים אנהייבן צי עס איז דא א נייע ווערסיע, און שטעלט זי איין מיט איין קליק. די סעטינגס בלייבן.
 
-> **⚠️ טו שריט E (Connect Google Account + לאג זיך איין) איידער דו שיקסט דיין ערשטן טעסט-טעקסט.**
+## פריוואטקייט
 
-**טראבלשוטינג:** "access_denied" → לייג צו דיין אימעל ביי Test users (שריט C-5) • "Gmail API disabled" → ענדיג שריט B • פאלשע קאנטע → מעק אויס `token.json` און פארבינד נאכאמאל.
+- די API קי און די Google דערלויבעניש ווערן געהאלטן נאר אויף דיין קאמפיוטער, אין `config.json` און `token.json` לעבן דער פראגראם.
+- שמועסן ווערן געשיקט צו Anthropic (אדער Google Gemini, ווען מען קלייבט עס) כדי צו באקומען אן ענטפער. אימעילס און פיילן ווערן צוגעקומען נאר ווען מען שטעלט אן יענעם קאנעקטאר.
+- חוץ דעם טשעקט די פראגראם נאר ביי GitHub צי עס איז דא א נייע ווערסיע. זי שיקט נישט קיין אינפארמאציע צו קיין שום אנדערן ארט.
 
 ---
 
-## Google Voice SMS (טעקסטן צו די AI)
+## English
 
-כדי צו קענען טעקסטן צו די AI פון דיין טעלעפאן, מוזטו **אנשטעלן אימעל-נאטיפיקאציע ביי Google Voice**:
+**MyDeskAI** is a Windows app for working with Claude, Anthropic's AI, directly on your computer. It can manage files, run commands, work in Chrome, use Gmail, Google Drive and GitHub, and answer text messages through a Google Voice number. It runs on either an Anthropic API key or a Claude Pro/Max subscription via Claude Code.
 
-1. גיי צו [voice.google.com](https://voice.google.com)
-2. Settings (⚙) → **Messages**
-3. שטעל **אן** די אפציע **"Forward messages to email"**
-
-דעמאלט קומען די טעקסטן אריין אין Gmail, און די פראגראם ענטפערט צוריק פער SMS.
-
-> **⚠️ דער ערשטער מאל:** נאכן אריינלייגן די `credentials.json` פייל, קליק **"Connect Google Account"** (אדער פרוביר עס איין מאל אין די פראגראם) — עס וועט זיך עפענען א בראוזער-פענצטער וואס בעט דיך אריינצולאגן אין דיין אימעל און ערלויבן צוטריט. **טו דאס איין מאל, איידער דו שיקסט דיין ערשטן טעסט-טעקסט.**
-
-*(פאר הילף וויאזוי צו אויפסעטן א Google Voice נומער — זע דעם [אייוועלט אשכול](https://www.ivelt.com/forum/viewtopic.php?t=8647).)*
+Download `MyDeskAI.exe` from the [latest release](https://github.com/Frish-Gebakn/claude-agent/releases/latest). Requires Windows 10 or 11; Windows 10 may need the free Microsoft Edge WebView2 runtime. Setup instructions (in Yiddish, with screenshots) are attached to each release.
 
 ---
 
-## וויכטיגע נאטיצן
-
-- טייל **קיינמאל נישט** דיינע `config.json` אדער `token.json` — זיי האלטן דיין קי און לאגין.
-- "גאנצע קאמפיוטער" צוטריט לאזט די AI טון אלץ וואס *דו* קענסט. נוץ "איין פאלדער" און די ריסטריקטעד-קאמאנדס אויב דו ווילסט מער אפגעהיט זיין.
-- די API קאסט געלט לויט'ן באנוץ — האלט אן אויג אויף דיין Billing.
-
----
-
-לעת עתה ארבעט עס מיט א **Claude (Anthropic)** API קי — מען קען נוצן אלע זייערע מאדעלן. מיט די צייט אי"ה וועט מען אויך צולייגן **Gemini** און **ChatGPT**.
-
-פראגעס, הערות אדער אישוס? לאזט וויסן אינעם אייוועלט אשכול.
+<p align="center">קרעדיט@פריש געבאקן אייוועלט</p>
