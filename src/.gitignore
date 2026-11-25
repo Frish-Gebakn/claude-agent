@@ -1,0 +1,42 @@
+# Build output. dist/ is 267 MB and build/ another 194 MB - and GitHub refuses
+# any single file over 100 MB, so the two 130 MB .exe files could not go up even
+# if they were wanted. The published .exe belongs in a Release, not in the repo.
+dist/
+build/
+*.exe
+
+# dist/ChromeProfile is a REAL Chrome profile: History, Web Data, cookies, cache.
+# Never commit it, under any path.
+ChromeProfile/
+
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs and run output can carry whatever was typed into the app that day.
+*.log
+agent.log
+selftest_result.txt
+
+# Logs that users sent with "Send logs" (tools/fetch_user_logs.py). Never public.
+user_logs/
+MyDeskAI-logs-*.txt
+
+# Wrangler's local state
+.wrangler/
+node_modules/
+
+# Anything that could hold a key. The source is clean today; this keeps it that
+# way if a config is ever dropped in beside it.
+.env
+config.json
+settings.json
+credentials.json
+token.json
+*.session
+
+# SMS questions and answers the app logged
+sms_log.json
+sms_log.tmp
+mcp_playwright.json
+.dev.vars

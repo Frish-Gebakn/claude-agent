@@ -75,11 +75,29 @@ MyDeskAI לאזט דיך רעדן מיט Claude אויף אידיש אדער ע�
 
 די פראגראם טשעקט ביים אנהייבן צי עס איז דא א נייע ווערסיע, און שטעלט זי איין מיט איין קליק. די סעטינגס בלייבן.
 
+## ווען עפעס גייט נישט
+
+- ווען עפעס גייט שיף, זאגט די פראגראם קלאר וואס איז געשען און וואס צו טון: א פילטער וואס בלאקירט, א קי וואס איז נישט גוט, קיין קרעדיט, צו פיל בקשות, אדער קיין אינטערנעט.
+- דער קנעפל **Send logs** (אינעם שמועס, און אין Settings ← App) שיקט דעם לאג צום דעוועלאפער, כדי מען זאל קענען פארעכטן דעם פראבלעם. איידער עס גייט אוועק זעט מען אינגאנצן וואס עס שיקט, און די קיס, טאקענס און פאסווערטער ווערן פריער ארויסגענומען. מען באקומט א נומער; דערמאן אים אויף אייוועלט.
+
 ## פריוואטקייט
 
 - די API קי און די Google דערלויבעניש ווערן געהאלטן נאר אויף דיין קאמפיוטער, אין `config.json` און `token.json` לעבן דער פראגראם.
 - שמועסן ווערן געשיקט צו Anthropic (אדער Google Gemini, ווען מען קלייבט עס) כדי צו באקומען אן ענטפער. אימעילס און פיילן ווערן צוגעקומען נאר ווען מען שטעלט אן יענעם קאנעקטאר.
-- חוץ דעם טשעקט די פראגראם נאר ביי GitHub צי עס איז דא א נייע ווערסיע. זי שיקט נישט קיין אינפארמאציע צו קיין שום אנדערן ארט.
+- חוץ דעם טשעקט די פראגראם נאר ביי GitHub צי עס איז דא א נייע ווערסיע. דער לאג גייט נאר ווען מען דריקט אליין **Send logs** און דערנאך **Send**. אנדערש שיקט זי נישט קיין אינפארמאציע צו קיין שום אנדערן ארט.
+
+## סאורס קאוד
+
+דער גאנצער קאוד איז דא אין [`src/`](src), אפען סאורס אונטער דער [MIT לייסענס](LICENSE). ווער עס וויל קען אים ליינען, אליין בויען, אדער פארבעסערן.
+
+```
+cd src
+py -m pip install anthropic google-genai google-api-python-client google-auth-oauthlib playwright pywebview truststore requests websockets pillow pyinstaller
+py app.py                                   # לויפט עס פונעם קאוד
+py -m PyInstaller --noconfirm "Claude Agent.spec"   # בויט dist\MyDeskAI.exe
+```
+
+`src/deploy/logs-worker` איז דער קליינער Cloudflare Worker וואס נעמט אן די **Send logs**. ליינען די לאגס קען מען נאר מיט א שליסל וואס איז נישט אינעם קאוד.
 
 ---
 
@@ -88,6 +106,10 @@ MyDeskAI לאזט דיך רעדן מיט Claude אויף אידיש אדער ע�
 **MyDeskAI** is a Windows app for working with Claude, Anthropic's AI, directly on your computer. It can manage files, run commands, work in Chrome, use Gmail, Google Drive and GitHub, and answer text messages through a Google Voice number. It runs on either an Anthropic API key or a Claude Pro/Max subscription via Claude Code.
 
 Download `MyDeskAI.exe` from the [latest release](https://github.com/Frish-Gebakn/claude-agent/releases/latest). Requires Windows 10 or 11; Windows 10 may need the free Microsoft Edge WebView2 runtime. Setup instructions (in Yiddish, with screenshots) are attached to each release.
+
+When something fails, the app says in plain words what happened (a content filter, a bad key, no credit, rate limits, no connection). **Send logs** shows the user the whole activity log, with keys and tokens removed, and sends it only when they press Send.
+
+The source is in [`src/`](src) under the [MIT license](LICENSE): `app.py` (the window, pywebview over WebView2), `agent_core.py` (the agent and its tools), `logsend.py` (Send logs), `ui/` (the page), `deploy/logs-worker` (the Cloudflare Worker that receives logs; reading them needs a token that is not in this repository). Build with `py -m PyInstaller --noconfirm "Claude Agent.spec"` from `src/`.
 
 ---
 

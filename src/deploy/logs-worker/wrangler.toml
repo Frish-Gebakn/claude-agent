@@ -1,0 +1,16 @@
+# Receives MyDeskAI's "Send logs" reports. See src/index.js.
+# Deploy:  npx wrangler kv namespace create LOGS   (put the id below)
+#          npx wrangler secret put READ_TOKEN      (any long random string; keep a copy
+#                                                   for tools/fetch_user_logs.py)
+#          npx wrangler deploy
+# Behind a content filter that re-signs HTTPS, run wrangler with NODE_OPTIONS=--use-system-ca.
+name = "mydeskai-logs"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+# A custom domain rather than *.workers.dev, which some content filters block outright.
+workers_dev = false
+routes = [{ pattern = "logs.kolsatmar.org", custom_domain = true }]
+
+[[kv_namespaces]]
+binding = "LOGS"
+id = "2b42537bc97e40439de681546451acaa"

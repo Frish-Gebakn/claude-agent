@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MyDeskAI</title>
+<link rel="icon" href="app_icon.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ======================= the desk ======================= -->
+<aside>
+  <div class="brand"><img class="logo" src="app_icon.png" alt=""><b>MyDeskAI</b></div>
+
+  <div class="status">
+    <div class="top">
+      <span id="state" class="state idle"><i></i><b>Not running</b></span>
+      <button id="engineBtn" class="go">Start</button>
+    </div>
+    <div id="meta" class="meta"></div>
+  </div>
+
+  <div class="label">What I'm doing</div>
+  <div id="steps"></div>
+
+  <div class="label">Connected</div>
+  <div id="conns" class="conns"></div>
+
+  <div class="sp"></div>
+  <nav>
+    <button class="nav on" data-view="chat"><i class="ic">&#xE8BD;</i>Chat</button>
+    <button class="nav" data-view="sms"><i class="ic">&#xE717;</i>Text messages<span id="smsBadge" class="badge hidden"></span></button>
+    <button class="nav" data-view="settings"><i class="ic">&#xE713;</i>Settings</button>
+  </nav>
+  <div id="credit" class="credit"></div>
+  <div id="ver" class="ver"></div>
+</aside>
+
+<section>
+  <!-- ======================= chat ======================= -->
+  <div class="view" id="view-chat">
+    <div class="bar">
+      <h1>Chat</h1>
+      <button class="pill" id="logBtn"><i class="ic">&#xE81C;</i>Activity log</button>
+      <button class="pill" id="sendLogsBtn" title="Send the activity log to the developer, so a problem can be fixed"><i class="ic">&#xEBE8;</i>Send logs</button>
+      <button class="pill" id="newChat"><i class="ic">&#xE710;</i>New chat</button>
+    </div>
+    <div class="scroll" id="chatScroll">
+      <div class="hello" id="hello">
+        <h2 id="greet"></h2>
+        <p class="sub">Ask in Yiddish or English. I can work on this computer, in Chrome, and in your e-mail.</p>
+        <div class="nokey hidden" id="nokey">
+          <span>No Anthropic API key yet. Add one in Settings, or switch to your Claude subscription there.</span>
+          <button data-goto="settings:engine">Open settings</button>
+        </div>
+        <div class="list" id="starters"></div>
+      </div>
+      <div class="thread" id="thread"></div>
+    </div>
+    <div class="logpanel hidden" id="logPanel"></div>
+    <footer>
+      <div class="compose">
+        <textarea id="box" rows="1" dir="auto" placeholder="Write a message…"></textarea>
+        <div class="row">
+          <button class="tbtn" id="cmdBtn"><i class="ic">&#xE710;</i>Commands</button>
+          <button class="tbtn" id="modelChip"><i class="ic">&#xE945;</i><span></span></button>
+          <button class="tbtn" id="effortChip" title="How hard the model thinks"><i class="ic">&#xEC4A;</i><span></span></button>
+          <span class="hint">Enter to send, Shift+Enter for a new line</span>
+          <button class="send" id="sendBtn" title="Send"><i class="ic">&#xE724;</i></button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ======================= text messages ======================= -->
+  <div class="view hidden" id="view-sms">
+    <div class="bar">
+      <h1>Text messages</h1>
+      <button class="pill" data-goto="settings:connectors"><i class="ic">&#xE713;</i>SMS settings</button>
+    </div>
+    <div class="scroll">
+      <div class="smshead">
+        <div class="fact">
+          <small>Model for text messages</small>
+          <b id="smsModel"></b>
+          <p>Text “model” and a name to change it, or “which model” to ask.</p>
+        </div>
+        <div class="fact">
+          <small>Google Voice bridge</small>
+          <b id="smsBridge"></b>
+          <p id="smsWho"></p>
+        </div>
+      </div>
+      <div class="convos" id="convos"></div>
+    </div>
+  </div>
+
+  <!-- ======================= settings ======================= -->
+  <div class="view hidden" id="view-settings">
+    <div class="bar"><h1>Settings</h1></div>
+    <div class="tabs" id="tabs">
+      <button data-tab="engine" class="on">Engine</button>
+      <button data-tab="access">Access</button>
+      <button data-tab="connectors">Connectors</button>
+      <button data-tab="instructions">Instructions</button>
+      <button data-tab="app">App</button>
+    </div>
+    <div class="scroll">
+      <div class="form">
+
+        <!-- engine -->
+        <div data-pane="engine">
+          <div class="group">
+            <h3>AI engine</h3>
+            <p class="lead">Pick how the AI is paid for. You can switch any time.</p>
+            <div class="tiles">
+              <button class="tile" data-k="ai_backend" data-v="api"><b>Claude API</b><p>Pay per use with an Anthropic API key.</p></button>
+              <button class="tile" data-k="ai_backend" data-v="claude_code"><b>Claude subscription</b><p>Your Claude Code login, no per-token cost. Needs the free Claude Code CLI.</p></button>
+            </div>
+            <div data-show="ai_backend=api">
+              <div class="row2"><label>API key</label><input class="field" type="password" data-k="anthropic_api_key" style="grid-column:2/4"></div>
+              <p class="note" style="margin:6px 0 0 162px">From console.anthropic.com, under API keys. The account needs credits.</p>
+              <div class="row2"><label>Model</label><button class="dd" data-k="model" data-dd="api" style="grid-column:2/4"></button></div>
+            </div>
+            <div data-show="ai_backend=claude_code">
+              <div class="row2"><label>Model</label><button class="dd" data-k="claude_code_model" data-dd="sub" style="grid-column:2/4"></button></div>
+              <div class="row2"><label>Work folder</label><input class="field" data-k="claude_work_dir"><button class="ghost" data-pick="workdir:claude_work_dir">Browse…</button></div>
+              <p class="note" style="margin:6px 0 0 162px">Where you run Claude Code in a terminal. Texting “terminal” continues your chats from there.</p>
+              <label class="check"><input type="checkbox" data-k="browser_in_subscription">Let the AI control Chrome <small style="color:var(--faint)">(needs Node.js and the Playwright MCP)</small></label>
+            </div>
+            <div class="row2"><label>Effort</label><button class="dd" data-k="effort" data-dd="effort" style="grid-column:2/4"></button></div>
+            <p class="note" style="margin:6px 0 0 162px">How hard the model thinks before it answers. Higher is better on hard tasks, but slower and uses more of your credit or plan. You can also text “effort high”, “effort low” and so on.</p>
+            <div class="row2"><label>Max tool steps</label><input class="field" type="number" min="1" data-k="max_tool_iterations" style="max-width:110px"></div>
+            <p class="note" style="margin:6px 0 0 162px">How many actions the AI may take for one message before it stops.</p>
+          </div>
+
+          <div class="group">
+            <h3>Gemini (optional)</h3>
+            <p class="lead">A free Google Gemini key lets you switch the brain by typing “gemini” or “claude”.</p>
+            <div class="row2"><label>Gemini API key</label><input class="field" type="password" data-k="gemini_api_key" style="grid-column:2/4"></div>
+            <p class="note" style="margin:6px 0 0 162px">Get one free at aistudio.google.com/apikey.</p>
+          </div>
+
+          <div class="group">
+            <h3>Google account</h3>
+            <p class="lead">Needed only for Gmail, Drive and the SMS bridge.</p>
+            <div class="row2"><label>credentials.json</label><input class="field" data-k="credentials_file"><button class="ghost" data-pick="credentials:credentials_file">Browse…</button></div>
+            <div class="btns">
+              <button class="primary" id="connectGoogle">Connect Google account</button>
+              <button class="ghost" id="googleHelp">Step-by-step guide</button>
+            </div>
+            <p class="note" id="googleStatus" style="margin-top:10px">Pick the file, then connect. A browser opens to sign in.</p>
+          </div>
+        </div>
+
+        <!-- access -->
+        <div data-pane="access" class="hidden">
+          <div class="group">
+            <div class="sw">
+              <div><b>Autonomous mode</b><p>On: the AI runs restricted commands without asking first. Off: it has to ask you.</p></div>
+              <label class="toggle"><input type="checkbox" data-k="autonomous"><span></span></label>
+            </div>
+          </div>
+          <div class="group">
+            <h3>File access</h3>
+            <p class="lead">How much of the computer may the AI touch?</p>
+            <div class="tiles">
+              <button class="tile" data-k="access_mode" data-v="full"><b>Whole computer</b><p>Every drive and folder.</p></button>
+              <button class="tile" data-k="access_mode" data-v="folder"><b>One folder</b><p>The file tools stay inside the folder you pick.</p></button>
+            </div>
+            <div class="row2"><label>Folder</label><input class="field" data-k="allowed_folder" data-enable="access_mode=folder"><button class="ghost" data-pick="folder:allowed_folder" data-enable="access_mode=folder">Browse…</button></div>
+            <p class="note" style="margin:6px 0 0 162px">Shell commands start in this folder, but a determined command can still reach elsewhere.</p>
+          </div>
+          <div class="group">
+            <h3>Restricted commands</h3>
+            <p class="lead" id="restrictLead"></p>
+            <textarea class="field mono" data-k="restricted_commands" style="margin-top:12px" placeholder="del&#10;format&#10;shutdown&#10;git push"></textarea>
+          </div>
+        </div>
+
+        <!-- connectors -->
+        <div data-pane="connectors" class="hidden">
+          <p class="lead" style="margin:14px 4px 0">Turn on what the AI may use. Gmail, Drive and SMS use the Google account you connect under Engine.</p>
+          <div class="group"><div class="sw"><div><b>Gmail</b><p>Search, read and send e-mail.</p></div>
+            <label class="toggle"><input type="checkbox" data-k="gmail_enabled"><span></span></label></div></div>
+          <div class="group"><div class="sw"><div><b>Google Drive</b><p>Search, download and upload files.</p></div>
+            <label class="toggle"><input type="checkbox" data-k="gdrive_enabled"><span></span></label></div></div>
+          <div class="group">
+            <div class="sw"><div><b>Google Voice SMS</b><p>Text the AI from your phone; it answers by text.</p></div>
+              <label class="toggle"><input type="checkbox" data-k="sms_enabled"><span></span></label></div>
+            <div class="body" data-show="sms_enabled">
+              <div class="row2"><label>Allowed numbers</label><input class="field" data-k="allowed_numbers" placeholder="845-555-1234, 718-555-9876" style="grid-column:2/4"></div>
+              <p class="note" style="margin:6px 0 0 162px">Comma-separated. Blank lets anyone who texts your Google Voice number use the AI.</p>
+              <label class="check"><input type="checkbox" data-k="reply_via_web">Reply through the Google Voice page in Chrome</label>
+              <p class="note" style="margin:4px 0 0 28px">Sends the whole answer as one message (no 1/2/3 splitting). Falls back to e-mail when Chrome isn't ready.</p>
+            </div>
+          </div>
+          <div class="group">
+            <div class="sw"><div><b>GitHub</b><p>Read and write files in your repositories.</p></div>
+              <label class="toggle"><input type="checkbox" data-k="github_enabled"><span></span></label></div>
+            <div class="body" data-show="github_enabled">
+              <div class="row2"><label>Token</label><input class="field" type="password" data-k="github_token" style="grid-column:2/4"></div>
+            </div>
+          </div>
+          <div class="group">
+            <div class="sw"><div><b>Custom web API</b><p>Let the AI call one web API of your own.</p></div>
+              <label class="toggle"><input type="checkbox" data-k="custom_enabled"><span></span></label></div>
+            <div class="body" data-show="custom_enabled">
+              <div class="row2"><label>Tool name</label><input class="field" data-k="custom_name" style="grid-column:2/4"></div>
+              <div class="row2"><label>Base URL</label><input class="field" data-k="custom_base_url" placeholder="https://api.example.com/v1" style="grid-column:2/4"></div>
+              <div class="row2"><label>Auth header</label><input class="field" type="password" data-k="custom_auth_header" placeholder="Authorization: Bearer abc123" style="grid-column:2/4"></div>
+              <div class="row2"><label>What it does</label><input class="field" data-k="custom_description" style="grid-column:2/4"></div>
+              <p class="note" style="margin:6px 0 0 162px">The key is only ever sent to the base URL's own site.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- instructions -->
+        <div data-pane="instructions" class="hidden">
+          <div class="group">
+            <h3>Custom instructions</h3>
+            <p class="lead">Persona, rules and background the AI should always keep in mind, on top of its built-in behaviour. For example: “Answer in Yiddish and keep it short.”</p>
+            <textarea class="field" dir="auto" data-k="system_instructions" style="margin-top:12px;min-height:300px"></textarea>
+          </div>
+        </div>
+
+        <!-- app -->
+        <div data-pane="app" class="hidden">
+          <div class="group">
+            <h3>Shortcuts</h3>
+            <p class="lead">Put MyDeskAI on the Start menu, the desktop and the taskbar.</p>
+            <div class="btns"><button class="ghost" id="shortcuts">Add shortcuts</button></div>
+          </div>
+          <div class="group">
+            <h3>Updates</h3>
+            <div class="row2"><label>Update source</label><input class="field" data-k="update_repo"><button class="ghost" id="checkNow">Check now</button></div>
+            <p class="note" style="margin:6px 0 0 162px">The GitHub owner/repo that updates come from.</p>
+            <label class="check"><input type="checkbox" data-k="auto_check_updates">Check for updates when the app starts</label>
+          </div>
+          <div class="group">
+            <h3>Help improve MyDeskAI</h3>
+            <p class="lead">Something not working? Send the activity log to the developer. You see exactly what goes before it is sent, and keys and passwords are taken out first.</p>
+            <div class="btns"><button class="ghost" id="sendLogsBtn2">Send logs</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="savebar"><span id="saveNote"></span><button class="primary" id="saveBtn">Save settings</button></div>
+  </div>
+</section>
+
+<div id="layer"></div>
+<script src="app.js"></script>
+</body>
+</html>
